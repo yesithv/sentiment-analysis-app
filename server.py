@@ -7,9 +7,14 @@
 
 
 from flask import Flask, render_template, request
-from SentimentAnalysis.sentimental_understanding import sentiment_analyzer
+from sentiment_analysis.analyzer import SentimentAnalyzer
+from sentiment_analysis.implementations.textblob_analyzer import (
+    TextBlobSentimentAnalyzer,
+)
 
 app = Flask("Sentiment Analyzer")
+analyzer: SentimentAnalyzer = TextBlobSentimentAnalyzer()
+
 
 @app.route("/sentimentAnalyzer")
 def sent_analyzer():
@@ -20,11 +25,11 @@ def sent_analyzer():
         return "Invalid input! Try again."
 
     # Pass the text to the sentiment_analyzer function and store the response
-    response = sentiment_analyzer(text_to_analyze)
+    result = analyzer.analyze(text_to_analyze)
 
     # Extract the label and score from the response
-    label = response['label']
-    score = response['score']
+    label = result.label
+    score = result.score
 
     # Check if the label is None, indicating an error or invalid input
     if label is None:
@@ -35,7 +40,6 @@ def sent_analyzer():
         return f"The given text has been identified as {label} with a score of {score}."
 
 
-
 @app.route("/")
 def render_index_page():
     ''' This function initiates the rendering of the main application
@@ -43,4 +47,5 @@ def render_index_page():
     '''
     return render_template('index.html')
 
-if __name__ == "__main__":app.run(host="0.0.0.0", port=5000)
+
+if __name__ == "__main__": app.run(host="0.0.0.0", port=5000)
