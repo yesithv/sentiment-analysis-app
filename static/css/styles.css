@@ -1,0 +1,168 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+        linear-gradient(
+            135deg,
+            #f4f7fb 0%,
+            #eef3f8 100%
+        );
+    color: #18212f;
+}
+
+.page-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.app-card {
+    width: 100%;
+    max-width: 760px;
+    background: white;
+    border-radius: 18px;
+    padding: 48px;
+    box-shadow:
+        0 18px 50px rgba(25, 40, 70, 0.12);
+}
+
+.app-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.badge {
+    display: inline-block;
+    background: #e8efff;
+    color: #315fce;
+    padding: 7px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+h1 {
+    margin: 18px 0 10px;
+    font-size: 2.6rem;
+}
+
+.subtitle {
+    color: #657184;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0 auto;
+    max-width: 540px;
+}
+
+.analyzer label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+textarea {
+    width: 100%;
+    resize: vertical;
+    border: 1px solid #ccd5e0;
+    border-radius: 10px;
+    padding: 15px;
+    font-size: 1rem;
+    line-height: 1.5;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: #4169e1;
+    box-shadow: 0 0 0 3px rgba(65, 105, 225, 0.12);
+}
+
+button {
+    margin-top: 18px;
+    width: 100%;
+    border: 0;
+    border-radius: 10px;
+    padding: 14px 20px;
+    background: #315fce;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #244cae;
+}
+
+.result-container {
+    margin-top: 36px;
+    padding: 28px;
+    text-align: center;
+    background: #f7f9fc;
+    border-radius: 14px;
+}
+
+.result-label,
+.confidence-label {
+    margin: 0 0 8px;
+    color: #6b7687;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.sentiment-result {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 24px;
+}
+
+.sentiment-result.positive {
+    color: #16834b;
+}
+
+.sentiment-result.negative {
+    color: #cf3c3c;
+}
+
+.confidence-result {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.app-footer {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+    margin-top: 36px;
+    color: #8a94a3;
+    font-size: 0.8rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.sentiment-result.neutral {
+    color: #d28a16;
+}
+
+.sentiment-result.error {
+    color: #cf3c3c;
+}
+
+button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}

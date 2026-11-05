@@ -6,12 +6,11 @@
 #  python server.py
 
 
-from flask import Flask, render_template, request
+from flask import Flask, jsonify, render_template, request
 from sentiment_analysis.analyzer import SentimentAnalyzer
 from sentiment_analysis.implementations.transformers_analyzer import (
     TransformersSentimentAnalyzer,
 )
-
 
 app = Flask("Sentiment Analyzer")
 analyzer: SentimentAnalyzer = TransformersSentimentAnalyzer()
@@ -19,26 +18,19 @@ analyzer: SentimentAnalyzer = TransformersSentimentAnalyzer()
 
 @app.route("/sentimentAnalyzer")
 def sent_analyzer():
-    # Retrieve the text to analyze from the request arguments
-    text_to_analyze = request.args.get('textToAnalyze')
+    text_to_analyze = request.args.get("textToAnalyze", "").strip()
 
     if not text_to_analyze:
-        return "Invalid input! Try again."
+        return jsonify({
+            "error": "Please enter some text to analyze."
+        }), 400
 
-    # Pass the text to the sentiment_analyzer function and store the response
     result = analyzer.analyze(text_to_analyze)
 
-    # Extract the label and score from the response
-    label = result.label
-    score = result.score
-
-    # Check if the label is None, indicating an error or invalid input
-    if label is None:
-        return "Invalid input! Try again."
-    else:
-        # Return a formatted string with the sentiment label and score
-        # return "The given text has been identified as {} with a score of {}.".format(label.split('_')[1], score)
-        return f"The given text has been identified as {label} with a score of {score}."
+    return jsonify({
+        "label": result.label,
+        "score": result.score
+    })
 
 
 @app.route("/")

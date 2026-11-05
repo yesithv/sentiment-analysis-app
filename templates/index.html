@@ -1,32 +1,88 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <script src="./static/mywebscript.js"></script>
-    <style>
-        .center-heading {
-            text-align: center;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Sentiment Analysis</title>
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='css/styles.css') }}"
+    >
 </head>
+
 <body>
-    <div class="card">
-        <div class="card-body">
-            <h1 class="center-heading">NLP - Sentiment Analysis using Transformers</h1>
-            <div style="padding: 25px 25px 25px 25px;">
-            <h2 class="mb-3">
-                <label class="form-label">Please enter the text to be analyzed</label>
-                <input type="textarea" class="form-control" id="textToAnalyze">
-            </h2>
 
-            <div style="padding: 25px 25px 25px 25px;">
-                <button onclick="RunSentimentAnalysis()" class="btn btn-secondary">Run Sentiment Analysis</button>
+<main class="page-container">
+
+    <section class="app-card">
+
+        <header class="app-header">
+            <span class="badge">NLP · AI</span>
+
+            <h1>Sentiment Analysis</h1>
+
+            <p class="subtitle">
+                Analyze the sentiment of text using a
+                Transformer-based NLP model.
+            </p>
+        </header>
+
+        <section class="analyzer">
+
+            <label for="textToAnalyze">
+                Text to analyze
+            </label>
+
+            <textarea
+                id="textToAnalyze"
+                rows="5"
+                placeholder="Example: I really enjoyed working on this project."
+            ></textarea>
+
+            <button
+                id="analyzeButton"
+                type="button"
+                onclick="RunSentimentAnalysis()"
+            >
+                Analyze Sentiment
+            </button>
+
+        </section>
+
+        <section
+            id="resultContainer"
+            class="result-container hidden"
+        >
+
+            <p class="result-label">
+                Sentiment
+            </p>
+
+            <div id="sentimentResult" class="sentiment-result">
             </div>
-            <div style="padding: 25px 25px 25px 25px;"></div>
-            <h2 class="mb-3">
-                <label class="form-label">Result of Sentiment Analysis</label>
-            </h2>
 
-            <div id="system_response" style="padding: 25px 25px 25px 25px;"></div>
-        </div>
-    </div>
+            <p class="confidence-label">
+                Confidence
+            </p>
+
+            <div id="confidenceResult" class="confidence-result">
+            </div>
+
+        </section>
+
+        <footer class="app-footer">
+            <span>DistilBERT</span>
+            <span>Hugging Face Transformers</span>
+            <span>Flask</span>
+        </footer>
+
+    </section>
+
+</main>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
 </body>
+</html>
