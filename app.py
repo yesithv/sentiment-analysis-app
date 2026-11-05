@@ -8,12 +8,13 @@
 
 from flask import Flask, render_template, request
 from sentiment_analysis.analyzer import SentimentAnalyzer
-from sentiment_analysis.implementations.textblob_analyzer import (
-    TextBlobSentimentAnalyzer,
+from sentiment_analysis.implementations.transformers_analyzer import (
+    TransformersSentimentAnalyzer,
 )
 
+
 app = Flask("Sentiment Analyzer")
-analyzer: SentimentAnalyzer = TextBlobSentimentAnalyzer()
+analyzer: SentimentAnalyzer = TransformersSentimentAnalyzer()
 
 
 @app.route("/sentimentAnalyzer")
