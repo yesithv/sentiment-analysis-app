@@ -8,11 +8,11 @@
 
 from flask import Flask, jsonify, render_template, request
 from sentiment_analysis.analyzer import SentimentAnalyzer
-from sentiment_analysis.implementations.transformers_analyzer import (
-    TransformersSentimentAnalyzer,
-)
+from sentiment_analysis.implementations.transformers_analyzer import TransformersSentimentAnalyzer
+from sentiment_analysis.implementations.textblob_analyzer import TextBlobSentimentAnalyzer
 
 app = Flask("Sentiment Analyzer")
+# analyzer: SentimentAnalyzer = TextBlobSentimentAnalyzer()
 analyzer: SentimentAnalyzer = TransformersSentimentAnalyzer()
 
 
